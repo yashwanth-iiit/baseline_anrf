@@ -1,6 +1,6 @@
 # Baseline Pipeline with FNO2D Model
 
-This repository provides a **reference baseline pipeline** for the Kaggle competition **[AISEHack-Test](https://www.kaggle.com/competitions/aise-hack-test/overview/)**, demonstrating a complete end-to-end workflow using a **2D Fourier Neural Operator (FNO2D)**. It is intended as a **clear, minimal, and reproducible example** rather than a production-optimized solution.
+This repository provides a **reference baseline pipeline** for the Kaggle competition **[AISEHACK Theme 2 - Pollution Forecasting](https://www.kaggle.com/competitions/aisehack-theme-2/overview)**, demonstrating a complete end-to-end workflow using a **2D Fourier Neural Operator (FNO2D)** implementation. It is intended as a **clear, minimal, and reproducible example** rather than a production-optimized solution.
 
 ---
 
@@ -86,9 +86,9 @@ This codebase is suitable for:
 
 ## Kaggle Data Locations for the Pipeline
 
-- **Raw training data:** `/kaggle/input/aise-hack-test/raw/<MONTH>/<feature>.npy`
-- **Test inputs:** `/kaggle/input/aise-hack-test/test_in/<feature>.npy`
-- **Min–max statistics:** `/kaggle/input/aise-hack-test/stats/feat_min_max.mat`
+- **Raw training data:** `/kaggle/input/aisehack-theme-2/raw/<MONTH>/<feature>.npy`
+- **Test inputs:** `/kaggle/input/aisehack-theme-2/test_in/<feature>.npy`
+- **Min–max statistics:** `/kaggle/input/aisehack-theme-2/stats/feat_min_max.mat`
 - **Prepared datasets:** `/kaggle/temp/data/train/`, `/kaggle/temp/data/val/`
 - **Checkpoints & logs:** `/kaggle/working/experiments/baseline/`
 - **Final predictions:** `/kaggle/working/preds.npy`
