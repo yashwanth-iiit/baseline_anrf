@@ -2,10 +2,10 @@ experiment:
   name: baseline
 
 paths:
-  input_loc: /kaggle/input/aisehack-theme-2/test_in/
+  input_loc: /kaggle/input/competitions/aisehack-theme-2/test_in/
   checkpoint: /kaggle/working/experiments/baseline/checkpoints/fno_baseline_ep99.pt
   output_loc: /kaggle/working/
-  min_max_file: /kaggle/input/aisehack-theme-2/stats/feat_min_max.mat
+  min_max_file: /kaggle/input/competitions/aisehack-theme-2/stats/feat_min_max.mat
 
 data:
   dataset: test_in     

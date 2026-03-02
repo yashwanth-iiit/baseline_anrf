@@ -86,9 +86,9 @@ This codebase is suitable for:
 
 ## Kaggle Data Locations for the Pipeline
 
-- **Raw training data:** `/kaggle/input/aisehack-theme-2/raw/<MONTH>/<feature>.npy`
-- **Test inputs:** `/kaggle/input/aisehack-theme-2/test_in/<feature>.npy`
-- **Min–max statistics:** `/kaggle/input/aisehack-theme-2/stats/feat_min_max.mat`
+- **Raw training data:** `/kaggle/input/competitions/aisehack-theme-2/raw/<MONTH>/<feature>.npy`
+- **Test inputs:** `/kaggle/input/competitions/aisehack-theme-2/test_in/<feature>.npy`
+- **Min–max statistics:** `/kaggle/input/competitions/aisehack-theme-2/stats/feat_min_max.mat`
 - **Prepared datasets:** `/kaggle/temp/data/train/`, `/kaggle/temp/data/val/`
 - **Checkpoints & logs:** `/kaggle/working/experiments/baseline/`
 - **Final predictions:** `/kaggle/working/preds.npy`
