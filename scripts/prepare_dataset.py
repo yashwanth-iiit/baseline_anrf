@@ -46,7 +46,6 @@ def create_timeseries_samples(
     train_save_dir,
     val_save_dir, 
     val_frac,
-    seed,
     horizon,
     stride,
 ):
@@ -82,7 +81,7 @@ def create_timeseries_samples(
         print("Total samples created -", samples.shape[0])
 
         train_samples, val_samples = train_val_split(
-            samples, val_frac=val_frac, seed=seed
+            samples, val_frac=val_frac
         )
 
         train_data[feat] = train_samples
@@ -126,7 +125,6 @@ for feat in all_features:
             train_save_dir=cfg.paths.train_savepath,
             val_save_dir=cfg.paths.val_savepath,
             val_frac=cfg.data.val_frac,
-            seed=cfg.data.seed,
             horizon=cfg.data.horizon,
             stride=cfg.data.stride,
         )
