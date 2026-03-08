@@ -61,40 +61,21 @@ class DataLoaders(torch.utils.data.Dataset):
 
         self.time_input = cfg.data.time_input
         self.time_out   = cfg.data.time_out
-        self.T = self.time_input + self.time_out
-
         self.S1 = cfg.data.S1
         self.S2 = cfg.data.S2
-        self.all_features = all_features
 
-        if split == "train":
-
-            base_path = savepath_train
-        elif split == "val":
-            base_path = savepath_val
-        else:
-            raise ValueError
-
-        self.arrs = {
-            feat: np.load(os.path.join(base_path, f"{split}_{feat}.npy"), mmap_mode="r")
-            for feat in self.all_features
-        }
-
-        self.N = self.arrs[self.all_features[0]].shape[0]
+        base_path = savepath_train if split == "train" else savepath_val
+        self.arr = np.load(os.path.join(base_path, f"{split}_all.npy"), mmap_mode="r")
+        self.N = self.arr.shape[0]
 
     def __len__(self):
         return self.N
 
     def __getitem__(self, idx):
 
-        X = np.empty((self.T, self.S1, self.S2, len(self.all_features)), dtype=np.float32)
-
-        for i, f in enumerate(self.all_features):
-            X[..., i] = self.arrs[f][idx, :self.T]
-
+        X = self.arr[idx].copy()
         x = torch.from_numpy(X[:self.time_input])
         y = torch.from_numpy(X[self.time_input:, ..., 0]).permute(1, 2, 0)
-
         return x, y
 
 

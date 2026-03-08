@@ -27,16 +27,17 @@ max_vals = {f: min_max[f"{f}_max"].item() for f in all_features}
 # Helper Functions
 # -----------------------
 
-def train_val_split(samples, val_frac=0.2, seed=0):
-    np.random.seed(seed)
+def train_val_split(samples, val_frac=0.2):
     N = samples.shape[0]
-    idx = np.random.permutation(N)
     n_val = int(val_frac * N)
+    
+    # Strictly chronological split
+    train_idx = N - n_val
+    
+    train_samples = samples[:train_idx]
+    val_samples = samples[train_idx:]
 
-    val_idx = idx[:n_val]
-    train_idx = idx[n_val:]
-
-    return samples[train_idx], samples[val_idx]
+    return train_samples, val_samples
 
 
 def create_timeseries_samples(
@@ -153,3 +154,25 @@ for feat in all_features:
     )
 
     del train_chunks, val_chunks, train_merged, val_merged
+
+print("\nStacking all features into single files...")
+
+all_train = []
+all_val = []
+
+for feat in all_features:
+    train_path = os.path.join(cfg.paths.train_savepath, f"train_{feat}.npy")
+    val_path = os.path.join(cfg.paths.val_savepath, f"val_{feat}.npy")
+    all_train.append(np.load(train_path))
+    all_val.append(np.load(val_path))
+
+train_stacked = np.stack(all_train, axis=-1)
+val_stacked   = np.stack(all_val,   axis=-1)
+
+print("Train stacked shape:", train_stacked.shape)
+print("Val stacked shape:",   val_stacked.shape)
+
+np.save(os.path.join(cfg.paths.train_savepath, "train_all.npy"), train_stacked.astype(np.float32))
+np.save(os.path.join(cfg.paths.val_savepath,   "val_all.npy"),   val_stacked.astype(np.float32))
+
+print("Done.")
